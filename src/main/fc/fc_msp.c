@@ -1770,8 +1770,10 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
         break;
 
     case MSP_SET_HEAD:
-        if (sbufReadU16Safe(&tmp_u16, src))
+        if (sbufReadU16Safe(&tmp_u16, src)){
             updateHeadingHoldTarget(tmp_u16);
+            posControl.cruise.course = (int32_t)tmp_u16;
+        }
         else
             return MSP_RESULT_ERROR;
         break;

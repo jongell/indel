@@ -150,9 +150,9 @@
 #define UART7_TX_PIN            PE8
 #define UART7_RX_PIN            PE7
 
-#define USE_UART8
-#define UART8_TX_PIN            PE1
-#define UART8_RX_PIN            PE0
+// #define USE_UART8
+// #define UART8_TX_PIN            PE1
+// #define UART8_RX_PIN            PE0
 
 #define USE_SOFTSERIAL1
 #define SOFTSERIAL_1_TX_PIN      PC6  //TX6 pad
@@ -183,16 +183,17 @@
 #define ADC_CHANNEL_5_PIN           PA4  //ADC12  VB2
 #define ADC_CHANNEL_6_PIN           PA7  //ADC12  CU2
 
-#define VBAT_ADC_CHANNEL            ADC_CHN_1
-#define CURRENT_METER_ADC_CHANNEL   ADC_CHN_2
+#define VBAT_ADC_CHANNEL            ADC_CHN_5
+#define CURRENT_METER_ADC_CHANNEL   ADC_CHN_6
 #define RSSI_ADC_CHANNEL            ADC_CHN_3
 #define AIRSPEED_ADC_CHANNEL        ADC_CHN_4
 
 // *************** PINIO ***************************
 #define USE_PINIO
 #define USE_PINIOBOX
-#define PINIO1_PIN                  PD10  // VTX power switcher
-#define PINIO2_PIN                  PD11  // 2xCamera switcher
+#define PINIO1_PIN                  PD10  // VTX power switcher box 47
+#define PINIO2_PIN                  PD11  // 2xCamera switcher box 48
+#define PINIO3_PIN                  PE0  // RunCam DVR box 57
 
 // *************** LEDSTRIP ************************
 #define USE_LED_STRIP
