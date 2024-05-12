@@ -209,7 +209,8 @@ void outputProfileUpdateTask(timeUs_t currentTimeUs)
         }
         isMixerTransitionMixing_requested = IS_RC_MODE_ACTIVE(BOXMIXERTRANSITION);
     }
-    isMixerTransitionMixing = isMixerTransitionMixing_requested && ((posControl.navState == NAV_STATE_IDLE) || mixerAT_inuse ||(posControl.navState == NAV_STATE_ALTHOLD_IN_PROGRESS));
+    // isMixerTransitionMixing = isMixerTransitionMixing_requested && ((posControl.navState == NAV_STATE_IDLE) || mixerAT_inuse ||(posControl.navState == NAV_STATE_ALTHOLD_IN_PROGRESS));
+    isMixerTransitionMixing = isMixerTransitionMixing_requested && (mixerAT_inuse ||(posControl.navState == NAV_STATE_ALTHOLD_IN_PROGRESS)); // removed posControl.navState == NAV_STATE_IDLE so I can spin up the Motor while it is in PosHold to avoid it drifting backwards.
 }
 
 // switch mixerprofile without reboot
