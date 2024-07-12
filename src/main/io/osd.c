@@ -2146,7 +2146,8 @@ static bool osdDrawSingleElement(uint8_t item)
 
     case OSD_ALTITUDE_MSL:
         {
-            int32_t alt = osdGetAltitudeMsl();
+            // int32_t alt = osdGetAltitudeMsl();
+            int32_t alt = gpsSol.llh.alt;
             osdFormatAltitudeSymbol(buff, alt);
             break;
         }
@@ -2532,14 +2533,25 @@ static bool osdDrawSingleElement(uint8_t item)
         break;
 
     case OSD_ATTITUDE_PITCH:
-        if (ABS(attitude.values.pitch) < 1)
-            buff[0] = 'P';
-        else if (attitude.values.pitch > 0)
-            buff[0] = SYM_PITCH_DOWN;
-        else if (attitude.values.pitch < 0)
-            buff[0] = SYM_PITCH_UP;
-        osdFormatCentiNumber(buff + 1, DECIDEGREES_TO_CENTIDEGREES(ABS(attitude.values.pitch)), 0, 1, 0, 3, false);
-        break;
+        // if (ABS(attitude.values.pitch) < 1)
+        //     buff[0] = 'P';
+        // else if (attitude.values.pitch > 0)
+        //     buff[0] = SYM_PITCH_DOWN;
+        // else if (attitude.values.pitch < 0)
+        //     buff[0] = SYM_PITCH_UP;
+        // osdFormatCentiNumber(buff + 1, DECIDEGREES_TO_CENTIDEGREES(ABS(attitude.values.pitch)), 0, 1, 0, 3, false);
+        // break;
+        {
+            int16_t levelDatumPitch = attitude.values.pitch + DEGREES_TO_DECIDEGREES(getFixedWingLevelTrim());
+            if (ABS(levelDatumPitch) < 1)
+                buff[0] = 'P';
+            else if (levelDatumPitch > 0)
+                buff[0] = SYM_PITCH_DOWN;
+            else if (levelDatumPitch < 0)
+                buff[0] = SYM_PITCH_UP;
+            osdFormatCentiNumber(buff + 1, DECIDEGREES_TO_CENTIDEGREES(ABS(levelDatumPitch)), 0, 1, 0, 3, false);
+            break;
+        }
 
     case OSD_ARTIFICIAL_HORIZON:
         {

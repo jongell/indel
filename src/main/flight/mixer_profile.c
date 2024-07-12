@@ -239,11 +239,11 @@ bool outputProfileHotSwitch(int profile_index)
         // LOG_INFO(PWM, "mixer switch failed, checkMixerProfileHotSwitchAvalibility");
         return false;
     }
-    if  ((posControl.navState != NAV_STATE_IDLE) && (posControl.navState != NAV_STATE_MIXERAT_IN_PROGRESS))
-    {
-        // LOG_INFO(PWM, "mixer switch failed, navState != NAV_STATE_IDLE");
-        return false;
-    }
+    // if  ((posControl.navState != NAV_STATE_IDLE) && (posControl.navState != NAV_STATE_MIXERAT_IN_PROGRESS))
+    // {
+    //     // LOG_INFO(PWM, "mixer switch failed, navState != NAV_STATE_IDLE");
+    //     return false;
+    // }
     if (!setConfigMixerProfile(profile_index))
     {
         // LOG_INFO(PWM, "mixer switch failed to set config");

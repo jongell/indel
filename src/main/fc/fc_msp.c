@@ -611,7 +611,8 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
 
     case MSP_ATTITUDE:
         sbufWriteU16(dst, attitude.values.roll);
-        sbufWriteU16(dst, attitude.values.pitch);
+        // sbufWriteU16(dst, attitude.values.pitch);
+        sbufWriteU16(dst, attitude.values.pitch + DEGREES_TO_DECIDEGREES(getFixedWingLevelTrim()));
         sbufWriteU16(dst, DECIDEGREES_TO_DEGREES(attitude.values.yaw));
         break;
 
@@ -1770,8 +1771,12 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
         break;
 
     case MSP_SET_HEAD:
-        if (sbufReadU16Safe(&tmp_u16, src))
+        // if (sbufReadU16Safe(&tmp_u16, src))
+        //     updateHeadingHoldTarget(tmp_u16);
+        if (sbufReadU16Safe(&tmp_u16, src)){
             updateHeadingHoldTarget(tmp_u16);
+            posControl.cruise.course = (int32_t)tmp_u16;
+        }
         else
             return MSP_RESULT_ERROR;
         break;

@@ -3779,8 +3779,17 @@ void setWaypoint(uint8_t wpNumber, const navWaypoint_t * wpData)
              ARMING_FLAG(ARMED) && (posControl.flags.estPosStatus == EST_TRUSTED) && posControl.gpsOrigin.valid && posControl.flags.isGCSAssistedNavigationEnabled &&
              (posControl.navState == NAV_STATE_POSHOLD_3D_IN_PROGRESS)) {
         // Convert to local coordinates
-        geoConvertGeodeticToLocal(&wpPos.pos, &posControl.gpsOrigin, &wpLLH, GEO_ALT_RELATIVE);
-
+        // geoConvertGeodeticToLocal(&wpPos.pos, &posControl.gpsOrigin, &wpLLH, GEO_ALT_RELATIVE);
+        geoAltitudeConversionMode_e altConvMode = waypointMissionAltConvMode(wpData->p3);
+        geoConvertGeodeticToLocal(&wpPos.pos, &posControl.gpsOrigin, &wpLLH, altConvMode);
+        if (altConvMode == GEO_ALT_ABSOLUTE) {
+            /* Calculate alt error between MSL and GPS RAW
+            then add it to the desired position; we want to use
+            current GPS RAW position as reference and not the 
+            origin, since at origin capture the GPS 3D fix could have
+            been significanlty less precise. */
+            wpPos.pos.z += gpsSol.llh.alt - navGetCurrentActualPositionAndVelocity()->pos.z - posControl.gpsOrigin.alt;
+        }
         navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_XY;
 
         // If we received global altitude == 0, use current altitude
