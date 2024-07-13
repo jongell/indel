@@ -3788,7 +3788,7 @@ void setWaypoint(uint8_t wpNumber, const navWaypoint_t * wpData)
             current GPS RAW position as reference and not the 
             origin, since at origin capture the GPS 3D fix could have
             been significanlty less precise. */
-            wpPos.pos.z += gpsSol.llh.alt - navGetCurrentActualPositionAndVelocity()->pos.z - posControl.gpsOrigin.alt;
+            wpPos.pos.z -= gpsSol.llh.alt - getEstimatedActualPosition(Z) - posControl.gpsOrigin.alt;
         }
         navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_XY;
 
