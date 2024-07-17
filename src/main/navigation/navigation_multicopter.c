@@ -821,7 +821,8 @@ bool isMulticopterLandingDetected(void)
      * Also active in non autonomous flight modes but only when thottle low */
     bool startCondition = (navGetCurrentStateFlags() & (NAV_CTL_LAND | NAV_CTL_EMERG))
                           || (FLIGHT_MODE(FAILSAFE_MODE) && !FLIGHT_MODE(NAV_WP_MODE) && throttleIsBelowMidHover)
-                          || (!navigationIsFlyingAutonomousMode() && throttleStickIsLow());
+                        //   || (!navigationIsFlyingAutonomousMode() && throttleStickIsLow());
+                          || (!navigationIsFlyingAutonomousMode() && throttleIsBelowMidHover);
 
     static timeMs_t landingDetectorStartedAt;
 
