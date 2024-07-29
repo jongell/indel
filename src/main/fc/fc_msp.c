@@ -77,6 +77,7 @@
 #include "flight/mixer_profile.h"
 #include "flight/mixer.h"
 #include "flight/pid.h"
+#include "flight/wind_estimator.h"
 #include "flight/servos.h"
 #include "flight/ez_tune.h"
 
@@ -920,11 +921,11 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
     //     sbufWriteU8(dst, gpsSol.flags.gpsHeartbeat ? 1 : 0);
     //     break;
     case MSP_WIND:
-        float horizontalWindSpeed;
-        uint16_t angle;
-        horizontalWindSpeed = getEstimatedHorizontalWindSpeed(&angle);
-        sbufWriteU16(dst, horizontalWindSpeed);
-        sbufWriteU16(dst, angle);
+        uint16_t windHeading; //centidegrees
+        float windSpeed = getEstimatedHorizontalWindSpeed(&windHeading); //cm/s
+        sbufWriteU16(dst, windSpeed);
+        sbufWriteU16(dst, windHeading);
+        break;
     case MSP_NAV_STATUS:
         sbufWriteU8(dst, NAV_Status.mode);
         sbufWriteU8(dst, NAV_Status.state);
