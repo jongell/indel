@@ -260,11 +260,11 @@
 #define MSP_RC_DEADBAND          125    //out message         deadbands for yaw alt pitch roll
 #define MSP_SENSOR_ALIGNMENT     126    //out message         orientation of acc,gyro,mag
 #define MSP_LED_STRIP_MODECOLOR  127    //out message         Get LED strip mode_color settings
+#define MSP_WIND                 128    //out message         wind speed, wind direction
 #define MSP_BATTERY_STATE        130    // DJI googles fc battery info
 
 #define MSP_SET_RAW_RC           200    //in message          8 rc chan
 #define MSP_SET_RAW_GPS          201    //in message          fix, numsat, lat, lon, alt, speed
-#define MSP_WIND                 202    //out message         wind speed, wind direction
 #define MSP_SET_BOX              203    //in message          BOX setup (number is dependant of your setup)
 #define MSP_SET_RC_TUNING        204    //in message          rc rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID, yaw expo
 #define MSP_ACC_CALIBRATION      205    //in message          no param
