@@ -260,7 +260,6 @@
 #define MSP_RC_DEADBAND          125    //out message         deadbands for yaw alt pitch roll
 #define MSP_SENSOR_ALIGNMENT     126    //out message         orientation of acc,gyro,mag
 #define MSP_LED_STRIP_MODECOLOR  127    //out message         Get LED strip mode_color settings
-#define MSP_WIND                 128    //out message         wind speed, wind direction
 #define MSP_BATTERY_STATE        130    // DJI googles fc battery info
 
 #define MSP_SET_RAW_RC           200    //in message          8 rc chan
@@ -299,6 +298,7 @@
 #define MSP_UID                  160    //out message         Unique device ID
 #define MSP_GPSSVINFO            164    //out message         get Signal Strength (only U-Blox)
 #define MSP_GPSSTATISTICS        166    //out message         get GPS debugging data
+#define MSP_WIND                 167    //out message         wind speed, wind direction
 #define MSP_ACC_TRIM             240    //out message         get acc angle trim values
 #define MSP_SET_ACC_TRIM         239    //in message          set acc angle trim values
 #define MSP_SERVO_MIX_RULES      241    //out message         Returns servo mixer configuration
