@@ -241,8 +241,7 @@
 #define MSP_MOTOR                104    //out message         motors
 #define MSP_RC                   105    //out message         rc channels and more
 #define MSP_RAW_GPS              106    //out message         fix, numsat, lat, lon, alt, speed, ground course
-// #define MSP_COMP_GPS             107    //out message         distance home, direction home
-#define MSP_WIND                 107    //out message         wind speed, wind direction
+#define MSP_COMP_GPS             107    //out message         distance home, direction home
 #define MSP_ATTITUDE             108    //out message         2 angles 1 heading
 #define MSP_ALTITUDE             109    //out message         altitude, variometer
 #define MSP_ANALOG               110    //out message         vbat, powermetersum, rssi if available on RX
@@ -265,6 +264,7 @@
 
 #define MSP_SET_RAW_RC           200    //in message          8 rc chan
 #define MSP_SET_RAW_GPS          201    //in message          fix, numsat, lat, lon, alt, speed
+#define MSP_WIND                 202    //out message         wind speed, wind direction
 #define MSP_SET_BOX              203    //in message          BOX setup (number is dependant of your setup)
 #define MSP_SET_RC_TUNING        204    //in message          rc rate, rc expo, rollpitch rate, yaw rate, dyn throttle PID, yaw expo
 #define MSP_ACC_CALIBRATION      205    //in message          no param

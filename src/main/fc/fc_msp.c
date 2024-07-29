@@ -915,11 +915,11 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         sbufWriteU16(dst, gpsSol.hdop);
         break;
 
-    // case MSP_COMP_GPS:
-    //     sbufWriteU16(dst, GPS_distanceToHome);
-    //     sbufWriteU16(dst, GPS_directionToHome);
-    //     sbufWriteU8(dst, gpsSol.flags.gpsHeartbeat ? 1 : 0);
-    //     break;
+    case MSP_COMP_GPS:
+        sbufWriteU16(dst, GPS_distanceToHome);
+        sbufWriteU16(dst, GPS_directionToHome);
+        sbufWriteU8(dst, gpsSol.flags.gpsHeartbeat ? 1 : 0);
+        break;
     case MSP_WIND:
         uint16_t windHeading; //centidegrees
         float windSpeed = getEstimatedHorizontalWindSpeed(&windHeading); //cm/s
