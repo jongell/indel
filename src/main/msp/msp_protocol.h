@@ -299,6 +299,7 @@
 #define MSP_GPSSVINFO            164    //out message         get Signal Strength (only U-Blox)
 #define MSP_GPSSTATISTICS        166    //out message         get GPS debugging data
 #define MSP_WIND                 167    //out message         wind speed, wind direction
+#define MSP_RADAR                168    //out message         nearest POI telemetry
 #define MSP_ACC_TRIM             240    //out message         get acc angle trim values
 #define MSP_SET_ACC_TRIM         239    //in message          set acc angle trim values
 #define MSP_SERVO_MIX_RULES      241    //out message         Returns servo mixer configuration

@@ -146,9 +146,9 @@
 #define UART6_TX_PIN            PC6
 #define UART6_RX_PIN            PC7
 
-#define USE_UART7
-#define UART7_TX_PIN            PE8
-#define UART7_RX_PIN            PE7
+// #define USE_UART7
+// #define UART7_TX_PIN            PE8
+// #define UART7_RX_PIN            PE7
 
 // #define USE_UART8
 // #define UART8_TX_PIN            PE1
@@ -158,7 +158,8 @@
 #define SOFTSERIAL_1_TX_PIN      PC6  //TX6 pad
 #define SOFTSERIAL_1_RX_PIN      PC6  //TX6 pad
 
-#define SERIAL_PORT_COUNT       9
+// #define SERIAL_PORT_COUNT       9
+#define SERIAL_PORT_COUNT       7
 
 #define DEFAULT_RX_TYPE         RX_TYPE_SERIAL
 #define SERIALRX_PROVIDER       SERIALRX_CRSF
@@ -195,7 +196,8 @@
 #define USE_PINIOBOX
 #define PINIO1_PIN                  PD10  // VTX power switcher
 #define PINIO2_PIN                  PD11  // 2xCamera switcher
-#define PINIO3_PIN                  PE0  // RunCam DVR Box 57
+#define PINIO3_PIN                  PE0  // RunCam DVR Box 57 (PIN: UART8 RX)
+#define PINIO4_PIN                  PE7  // Repeater Hardware Switch (PIN: UART7 RX)
 
 // *************** LEDSTRIP ************************
 #define USE_LED_STRIP
@@ -215,4 +217,3 @@
 #define MAX_PWM_OUTPUT_PORTS        15
 #define USE_DSHOT
 #define USE_ESC_SENSOR
-

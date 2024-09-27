@@ -139,6 +139,14 @@
 #define RSSI_ADC_CHANNEL ADC_CHN_2
 #define CURRENT_METER_ADC_CHANNEL ADC_CHN_3
 
+// *************** PINIO ***************************
+#define USE_PINIO
+#define USE_PINIOBOX
+#define PINIO1_PIN                  PD12  // Motor 5 Pin USER1
+#define PINIO2_PIN                  PD13  // Motor 6 Pin USER2
+#define PINIO3_PIN                  PC8  // Motor 7 Pin USER3
+#define PINIO4_PIN                  PC9  // Motor 8 Pin USER4
+
 // *************** LEDSTRIP ************************
 #define USE_LED_STRIP
 #define WS2811_PIN PA8

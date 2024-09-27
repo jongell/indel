@@ -77,7 +77,8 @@
 #include "flight/mixer_profile.h"
 #include "flight/mixer.h"
 #include "flight/pid.h"
-#include "flight/wind_estimator.h"
+#include "flight/wind_estimator.h" //for MSP_WIND
+#include "io/osd_hud.h" //for MSP_RADAR
 #include "flight/servos.h"
 #include "flight/ez_tune.h"
 
@@ -912,6 +913,7 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         sbufWriteU16(dst, gpsSol.llh.alt/100); // meters
         sbufWriteU16(dst, gpsSol.groundSpeed);
         sbufWriteU16(dst, gpsSol.groundCourse);
+        // sbufWriteU16(dst, posControl.flags.isGCSAssistedNavigationEnabled ? -3210 : gpsSol.groundCourse); // -3210 for redock
         sbufWriteU16(dst, gpsSol.hdop);
         break;
 
@@ -956,6 +958,10 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         float windSpeed = getEstimatedHorizontalWindSpeed(&windHeading); //cm/s
         sbufWriteU16(dst, windSpeed);
         sbufWriteU16(dst, windHeading);
+        break;
+    case MSP_RADAR:
+        int8_t nearest_poi = radarGetNearestPOI();
+        sbufWriteU16(dst, radar_pois[nearest_poi].heading); //° and -321 as return command after redock
         break;
 #endif
     case MSP_DEBUG:
