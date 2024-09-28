@@ -912,8 +912,8 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         sbufWriteU32(dst, gpsSol.llh.lon);
         sbufWriteU16(dst, gpsSol.llh.alt/100); // meters
         sbufWriteU16(dst, gpsSol.groundSpeed);
-        sbufWriteU16(dst, gpsSol.groundCourse);
-        // sbufWriteU16(dst, posControl.flags.isGCSAssistedNavigationEnabled ? -3210 : gpsSol.groundCourse); // -3210 for redock
+        // sbufWriteU16(dst, gpsSol.groundCourse);
+        sbufWriteU16(dst, posControl.flags.isGCSAssistedNavigationEnabled ? -3210 : gpsSol.groundCourse); // -3210 for redock
         sbufWriteU16(dst, gpsSol.hdop);
         break;
 
