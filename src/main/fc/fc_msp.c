@@ -2748,7 +2748,7 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
             radar_pois[msp_radar_no].heading = sbufReadU16(src);                   // °
             radar_pois[msp_radar_no].speed = sbufReadU16(src);                     // cm/s
             radar_pois[msp_radar_no].lq = sbufReadU8(src);                         // Link quality, from 0 to 4
-            // set nearest radar poi as desired position if in poshold for multirotor:
+            // set nearest radar_poi as desired position if in poshold for multirotor:
             if (
                 posControl.navState == NAV_STATE_POSHOLD_3D_IN_PROGRESS &&
                 ARMING_FLAG(ARMED) &&
