@@ -2748,6 +2748,22 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
             radar_pois[msp_radar_no].heading = sbufReadU16(src);                   // °
             radar_pois[msp_radar_no].speed = sbufReadU16(src);                     // cm/s
             radar_pois[msp_radar_no].lq = sbufReadU8(src);                         // Link quality, from 0 to 4
+            // set nearest radar poi as desired position if in poshold for multirotor:
+            if (posControl.navState == NAV_STATE_POSHOLD_3D_IN_PROGRESS) {
+                navWaypointPosition_t wpPos;
+                gpsLocation_t wpLLH;
+
+                int8_t nearest_poi = radarGetNearestPOI();
+                wpLLH.lat = radar_pois[nearest_poi].gps.lat;
+                wpLLH.lon = radar_pois[nearest_poi].gps.lon;
+                wpLLH.alt = radar_pois[nearest_poi].gps.alt / 100; // meters
+
+                geoConvertGeodeticToLocal(&wpPos.pos, &posControl.gpsOrigin, &wpLLH, GEO_ALT_ABSOLUTE);
+                wpPos.pos.z -= gpsSol.llh.alt - getEstimatedActualPosition(Z) - posControl.gpsOrigin.alt; // use GPS_RAW as reference and remove the alt error
+                navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_XY | NAV_POS_UPDATE_Z;
+
+                setDesiredPosition(&wpPos.pos, 0, waypointUpdateFlags);
+            }
         } else
             return MSP_RESULT_ERROR;
         break;
