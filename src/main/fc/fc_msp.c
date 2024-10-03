@@ -2761,13 +2761,14 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
             //     int8_t nearest_poi = radarGetNearestPOI();
             //     LLH.lat = radar_pois[nearest_poi].gps.lat;
             //     LLH.lon = radar_pois[nearest_poi].gps.lon;
-            //     LLH.alt = radar_pois[nearest_poi].gps.alt / 100; // meters
+            //     LLH.alt = radar_pois[nearest_poi].gps.alt;
 
             //     geoConvertGeodeticToLocal(&Pos.pos, &posControl.gpsOrigin, &LLH, GEO_ALT_ABSOLUTE);
             //     Pos.pos.z -= gpsSol.llh.alt - getEstimatedActualPosition(Z) - posControl.gpsOrigin.alt; // use GPS_RAW as reference and remove the alt error
-            //     navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_XY | NAV_POS_UPDATE_Z;
-
+            //     // if (calculateDistanceToDestination(&Pos.pos)/100 > 10){
+            //     navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_XY | NAV_POS_UPDATE_Z | NAV_POS_UPDATE_BEARING;
             //     setDesiredPosition(&Pos.pos, 0, waypointUpdateFlags);
+            //     // }
             // }
         } else
             return MSP_RESULT_ERROR;

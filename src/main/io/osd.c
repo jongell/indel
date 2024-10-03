@@ -1033,6 +1033,8 @@ static const char * navigationStateMessage(void)
             }
         case MW_NAV_STATE_HOLD_INFINIT:
             // Used by HOLD flight modes. No information to add.
+            // Flying to Docker Redocking
+            // return OSD_MESSAGE_STR("Docker: Jetting To Dropper");
             break;
         case MW_NAV_STATE_HOLD_TIMED:
             // "HOLDING WP FOR xx S" Countdown added in osdGetSystemMessage
