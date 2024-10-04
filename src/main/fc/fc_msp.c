@@ -2765,7 +2765,7 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
 
             //     geoConvertGeodeticToLocal(&Pos.pos, &posControl.gpsOrigin, &LLH, GEO_ALT_ABSOLUTE);
             //     Pos.pos.z -= gpsSol.llh.alt - getEstimatedActualPosition(Z) - posControl.gpsOrigin.alt; // use GPS_RAW as reference and remove the alt error
-            //     // if (calculateDistanceToDestination(&Pos.pos)/100 > 10){
+            //     // if (calculateDistanceToDestination(&Pos.pos)/100 > 50){
             //     navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_XY | NAV_POS_UPDATE_Z | NAV_POS_UPDATE_BEARING;
             //     setDesiredPosition(&Pos.pos, 0, waypointUpdateFlags);
             //     // }
