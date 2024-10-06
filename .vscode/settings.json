@@ -9,7 +9,8 @@
         "pid.h": "c",
         "wind_estimator.h": "c",
         "servos.h": "c",
-        "feature.h": "c"
+        "feature.h": "c",
+        "locale": "c"
     },
     "editor.tabSize": 4,
     "editor.insertSpaces": true,

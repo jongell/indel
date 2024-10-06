@@ -961,6 +961,10 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         break;
     case MSP_RADAR:
         int8_t nearest_poi = radarGetNearestPOI();
+        sbufWriteU8(dst, radar_pois[nearest_poi].state); // 0=undefined, 1=armed, 2=lost
+        sbufWriteU32(dst, radar_pois[nearest_poi].gps.lat); // lat 10E7
+        sbufWriteU32(dst, radar_pois[nearest_poi].gps.lon); // lon 10E7
+        sbufWriteU32(dst, radar_pois[nearest_poi].gps.alt); // altitude (cm)
         sbufWriteU16(dst, radar_pois[nearest_poi].heading); //° and -321 as return command after redock
         break;
 #endif
@@ -2766,7 +2770,10 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
             //     geoConvertGeodeticToLocal(&Pos.pos, &posControl.gpsOrigin, &LLH, GEO_ALT_ABSOLUTE);
             //     Pos.pos.z -= gpsSol.llh.alt - getEstimatedActualPosition(Z) - posControl.gpsOrigin.alt; // use GPS_RAW as reference and remove the alt error
             //     // if (calculateDistanceToDestination(&Pos.pos)/100 > 50){
-            //     navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_XY | NAV_POS_UPDATE_Z | NAV_POS_UPDATE_BEARING;
+            //     navSetWaypointFlags_t waypointUpdateFlags = NAV_POS_UPDATE_Z;
+            //     if (ABS(gpsSol.llh.alt - LLH.alt) < 5000) {
+            //         waypointUpdateFlags |= NAV_POS_UPDATE_XY | NAV_POS_UPDATE_BEARING;
+            //     }
             //     setDesiredPosition(&Pos.pos, 0, waypointUpdateFlags);
             //     // }
             // }

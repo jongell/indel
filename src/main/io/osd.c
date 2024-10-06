@@ -2277,6 +2277,7 @@ static bool osdDrawSingleElement(uint8_t item)
     case OSD_FLYMODE:
         {
             char *p = "ACRO";
+            // char *p = "            ACRO          ";
 #ifdef USE_FW_AUTOLAND
             if (FLIGHT_MODE(NAV_FW_AUTOLAND)) 
                 p = "LAND";
@@ -2294,6 +2295,7 @@ static bool osdDrawSingleElement(uint8_t item)
                 p = "LOTR";
             else if (FLIGHT_MODE(NAV_POSHOLD_MODE))
                 p = "HOLD";
+                // p = "DOCKER: JETTING TO DROPPER";
             else if (FLIGHT_MODE(NAV_COURSE_HOLD_MODE) && FLIGHT_MODE(NAV_ALTHOLD_MODE))
                 p = "CRUZ";
             else if (FLIGHT_MODE(NAV_COURSE_HOLD_MODE))
@@ -5166,9 +5168,6 @@ textAttributes_t osdGetSystemMessage(char *buff, size_t buff_size, bool isCenter
                 }
                 if (navGetCurrentStateFlags() & NAV_AUTO_WP_DONE) {
                     messages[messageCount++] = STATE(LANDING_DETECTED) ? OSD_MESSAGE_STR(OSD_MSG_WP_LANDED) : OSD_MESSAGE_STR(OSD_MSG_WP_FINISHED);
-                // } else if (NAV_Status.state == MW_NAV_STATE_HOLD_INFINIT && radarGetNearestPOI() != -1) {
-                //     tfp_sprintf(messageBuf, "Docker: Jetting To Dropper");
-                //     messages[messageCount++] = messageBuf;
                 } else if (NAV_Status.state == MW_NAV_STATE_WP_ENROUTE) {
                     // Countdown display for remaining Waypoints
                     char buf[6];
