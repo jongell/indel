@@ -1792,7 +1792,7 @@ static mspResult_e mspFcProcessInCommand(uint16_t cmdMSP, sbuf_t *src)
         //     updateHeadingHoldTarget(tmp_u16);
         if (sbufReadU16Safe(&tmp_u16, src)){
             updateHeadingHoldTarget(tmp_u16);
-            posControl.cruise.course = (int32_t)tmp_u16;
+            posControl.cruise.course = (int32_t)tmp_u16*100;
         }
         else
             return MSP_RESULT_ERROR;

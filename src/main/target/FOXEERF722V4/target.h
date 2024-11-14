@@ -103,13 +103,13 @@
 //Standard variant
 #define SERIAL_PORT_COUNT       7
 
-#define USE_UART2
-#define UART2_TX_PIN            PA2
-#define UART2_RX_PIN            PA3
+// #define USE_UART2
+// #define UART2_TX_PIN            PA2
+// #define UART2_RX_PIN            PA3
 
-#define USE_UART6
-#define UART6_TX_PIN            PC6 
-#define UART6_RX_PIN            PC7
+// #define USE_UART6
+// #define UART6_TX_PIN            PC6 
+// #define UART6_RX_PIN            PC7
 
 #endif
 
@@ -137,6 +137,11 @@
 #define VBAT_ADC_CHANNEL                ADC_CHN_1
 #define CURRENT_METER_ADC_CHANNEL       ADC_CHN_2
 #define RSSI_ADC_CHANNEL                ADC_CHN_3
+
+// *************** PINIO ***************************
+#define USE_PINIO
+#define USE_PINIOBOX
+#define PINIO1_PIN                  PA3  // VTX Power Switch UART2 RX Pin
 
 /*** LED STRIP ***/
 #define USE_LED_STRIP
