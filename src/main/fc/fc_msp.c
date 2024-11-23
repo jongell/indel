@@ -912,9 +912,9 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         sbufWriteU32(dst, gpsSol.llh.lon);
         sbufWriteU16(dst, gpsSol.llh.alt/100); // meters
         sbufWriteU16(dst, gpsSol.groundSpeed);
-        // sbufWriteU16(dst, gpsSol.fixType ? -123 : gpsSol.groundSpeed);
+        // sbufWriteU16(dst, gpsSol.fixType ? -320 : gpsSol.groundSpeed); // -320 valid fix for radar
         sbufWriteU16(dst, gpsSol.groundCourse);
-        // sbufWriteU16(dst, posControl.flags.isGCSAssistedNavigationEnabled ? -3210 : gpsSol.groundCourse); // -3210 for redock
+        // sbufWriteU16(dst, posControl.flags.isGCSAssistedNavigationEnabled ? -3210 : gpsSol.groundCourse); // -3210 for redock action
         sbufWriteU16(dst, gpsSol.hdop);
         break;
 
@@ -962,7 +962,7 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         break;
     case MSP_RADAR:
         int8_t nearest_poi = radarGetNearestPOI();
-        sbufWriteU16(dst, radar_pois[nearest_poi].speed); // -123 valid fix, otherwise groundspeed in cm/s
+        sbufWriteU16(dst, radar_pois[nearest_poi].speed); // -320 for valid fix, otherwise groundspeed in cm/s
         sbufWriteU16(dst, radar_pois[nearest_poi].heading); // ° and -321 as return command after redock
         sbufWriteU32(dst, radar_pois[nearest_poi].gps.lat); // lat 10E7
         sbufWriteU32(dst, radar_pois[nearest_poi].gps.lon); // lon 10E7
