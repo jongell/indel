@@ -970,6 +970,11 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
         break;
     case MSP_SAVECONFIG:
         saveConfigAndNotify();
+        if (!ARMING_FLAG(ARMED)) {
+            if (mspPostProcessFn) {
+                *mspPostProcessFn = mspRebootFn;
+            }
+        }
         break;
 #endif
     case MSP_DEBUG:
